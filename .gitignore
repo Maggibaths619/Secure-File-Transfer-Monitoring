@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# pytest / testing
+.pytest_cache/
+.cache/
+htmlcov/
+.coverage
+*.cover
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project runtime artifacts (auto-generated, not needed in repo)
+logs/
+monitored_storage/
+
+# SQLite databases (auto-created at runtime)
+*.db
+*.db-shm
+*.db-wal
+
+# Compiled / packaged
+*.pyc
+*.pyo

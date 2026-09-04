@@ -1,0 +1,169 @@
+# ==============================================================================
+# Secure File Transfer Monitoring System - Configuration
+# ==============================================================================
+
+monitoring:
+  # Directories to actively monitor for file system events
+  watch_paths:
+    - "monitored_storage/source_zone"
+    - "monitored_storage/sensitive_vault"
+    - "monitored_storage/usb_drive_sim"
+    - "monitored_storage/cloud_sync_sim"
+    - "monitored_storage/quarantine_zone"
+  recursive: true
+
+  # Polling interval in seconds (for fallback observer)
+  polling_interval: 1
+
+integrity:
+  # Hashing algorithms to use (primary and secondary)
+  algorithms:
+    - "sha256"
+    - "md5"
+  # Chunk size for reading large files (bytes)
+  chunk_size: 65536
+  # Store hash baselines in SQLite
+  baseline_db: "logs/audit_vault.db"
+
+classification:
+  # Sensitive file extensions
+  sensitive_extensions:
+    - ".key"
+    - ".pem"
+    - ".kdbx"
+    - ".sql"
+    - ".db"
+    - ".bak"
+    - ".docx"
+    - ".pdf"
+    - ".xlsx"
+    - ".csv"
+    - ".json"
+    - ".xml"
+    - ".zip"
+    - ".tar"
+    - ".gz"
+    - ".7z"
+    - ".rar"
+    - ".ppk"
+    - ".p12"
+    - ".pfx"
+    - ".crt"
+    - ".env"
+    - ".cfg"
+    - ".ini"
+    - ".conf"
+
+  # Sensitive path segments (case-insensitive)
+  sensitive_paths:
+    - "sensitive_vault"
+    - "passwords"
+    - "credentials"
+    - "private"
+    - "secret"
+    - "confidential"
+    - "restricted"
+    - "financial"
+    - "hr"
+    - "legal"
+
+  # Keyword patterns that classify file content as sensitive
+  sensitive_keywords:
+    - "CONFIDENTIAL"
+    - "RESTRICTED"
+    - "TOP SECRET"
+    - "INTERNAL USE ONLY"
+    - "SSN"
+    - "social security"
+    - "password"
+    - "API_KEY"
+    - "SECRET_KEY"
+    - "private key"
+    - "BEGIN RSA PRIVATE"
+    - "BEGIN OPENSSH PRIVATE"
+    - "credit card"
+    - "account number"
+    - "routing number"
+    - "bearer token"
+    - "access_token"
+
+  # Classification tiers
+  tiers:
+    HIGHLY_SENSITIVE:
+      - ".key"
+      - ".pem"
+      - ".kdbx"
+      - ".ppk"
+      - ".p12"
+      - ".pfx"
+    CONFIDENTIAL:
+      - ".sql"
+      - ".db"
+      - ".bak"
+      - ".env"
+    RESTRICTED:
+      - ".docx"
+      - ".pdf"
+      - ".xlsx"
+      - ".csv"
+    INTERNAL:
+      - ".json"
+      - ".xml"
+      - ".cfg"
+      - ".ini"
+      - ".conf"
+
+dlp:
+  # Paths or path patterns considered unauthorized destinations
+  unauthorized_destinations:
+    - "usb_drive_sim"
+    - "cloud_sync_sim"
+    - "OneDrive"
+    - "Dropbox"
+    - "Google Drive"
+    - "iCloud"
+    - "AppData\\Local\\Temp"
+    - "\\Temp\\"
+    - "\\tmp\\"
+
+  # Directories considered sensitive source zones (protected)
+  protected_sources:
+    - "sensitive_vault"
+    - "credentials"
+    - "financial"
+
+  # Burst exfiltration detection thresholds
+  burst_detection:
+    enabled: true
+    max_transfers: 10
+    window_seconds: 10
+    alert_severity: "CRITICAL"
+
+  # Authorized users (processes/user context that bypass some checks)
+  authorized_processes:
+    - "backup_agent.exe"
+    - "authorized_sync.exe"
+
+alerting:
+  # Severity levels: INFO, LOW, MEDIUM, HIGH, CRITICAL
+  min_display_severity: "INFO"
+  # Whether to print alerts to console
+  console_alerts: true
+  # Max alerts stored in memory for web dashboard
+  max_queue_size: 1000
+
+logging:
+  # Structured log files
+  json_log: "logs/transfers.json"
+  csv_log: "logs/audit.csv"
+  system_log: "logs/system.log"
+  database: "logs/audit_vault.db"
+  # Maximum log file size before rotation (MB)
+  max_log_size_mb: 50
+
+web:
+  host: "127.0.0.1"
+  port: 5000
+  debug: false
+  # Auto-open browser on start
+  auto_open: true
