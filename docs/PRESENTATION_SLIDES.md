@@ -7,14 +7,14 @@
 
 **Title:** Secure File Transfer Monitoring System (SFTMS)  
 **Subtitle:** Blue Team DLP & File Integrity Verification Toolkit  
-**Presenter:** [Your Name]  
+**Presenter:** Bathvar Mayurkumar .R  
 **Organization:** UnifiedMentor Cybersecurity Internship  
 **Date:** September 2026
 
 *Visual: Dark cyber background with hex grid, animated shield icon*
 
 **Speaker Notes:**  
-"Good morning/afternoon. My name is [Name], and today I'll be presenting my internship project — a Secure File Transfer Monitoring System built for real-time Data Loss Prevention and file integrity verification."
+"Good morning/afternoon. My name is Bathvar Mayurkumar .R, and today I'll be presenting my internship project — a Secure File Transfer Monitoring System built for real-time Data Loss Prevention and file integrity verification."
 
 ---
 

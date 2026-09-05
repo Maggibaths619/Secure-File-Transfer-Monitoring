@@ -193,7 +193,7 @@ Edit `config/config.yaml` to customize:
 
 ## Internship Project — UnifiedMentor Cybersecurity
 
-**Submitted by:** [Your Name]  
+**Submitted by:** Bathvar Mayurkumar .R  
 **Program:** Cybersecurity Internship  
 **Project:** Secure File Transfer Monitoring System  
 **Technologies:** Python 3.13, watchdog, hashlib, psutil, Flask, SQLite, Chart.js  
